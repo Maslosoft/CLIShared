@@ -1,0 +1,11 @@
+{
+    "name": "maslosoft/cli-shared",
+    "description": "Shared CLI application components",
+    "authors": [
+        {
+            "name": "Peter Maselkowski",
+            "email": "pmaselkowski@gmail.com"
+        }
+    ],
+    "require": {}
+}
