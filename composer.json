@@ -7,6 +7,10 @@
             "email": "pmaselkowski@gmail.com"
         }
     ],
+	"license": [
+		"AGPL",
+		"Commercial"
+	],
 	"autoload": {
 		"psr-4": {
 			"Maslosoft\\Cli\\Shared\\": "src"
