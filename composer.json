@@ -8,7 +8,9 @@
         }
     ],
 	"autoload": {
-		"Maslosoft\\Cli\\Shared\\": "src"
+		"psr-4" {
+			"Maslosoft\\Cli\\Shared\\": "src"
+		}
 	},
     "require": {}
 }
