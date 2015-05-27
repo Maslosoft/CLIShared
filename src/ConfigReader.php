@@ -19,15 +19,48 @@ class ConfigReader
 	 * @var ConfigAdapterInterface
 	 */
 	private $_adapter = null;
+	private $_phpConfig;
+	private $_srcConfig;
 
 	public function __construct($basename, ConfigAdapterInterface $adapter = null)
 	{
+		$this->_basename = $basename;
 		$this->_adapter = $adapter;
+		$this->_srcConfig = null;
 		if (php_sapi_name() == 'cli')
 		{
-			$srcConfig = $this->getAdapter()->read($basename);
+			$this->_srcConfig = $this->getAdapter()->read($this->_basename);
 		}
-		$phpConfig = (new PhpRuntimeAdapter($this))->read($basename);
+		if (!empty($this->_srcConfig))
+		{
+			// Source config in found, write it to php cafig for later use and better performance
+			$this->_phpConfig = $this->_srcConfig;
+		}
+		else
+		{
+			$this->_phpConfig = (new PhpRuntimeAdapter($this))->read($this->_basename);
+		}
+	}
+
+	/**
+	 * Get confguration as php array
+	 * @return mixed[]
+	 */
+	public function toArray()
+	{
+		if (empty($this->_phpConfig))
+		{
+			return [];
+		}
+		return (array) $this->_phpConfig;
+	}
+
+	public function __destruct()
+	{
+		if (!empty($this->_srcConfig))
+		{
+			(new PhpRuntimeAdapter($this))->write($this->_basename, $this->_phpConfig);
+		}
 	}
 
 	/**

@@ -18,12 +18,12 @@ class PhpRuntimeAdapter extends PhpAdapter
 
 	public function read($basename)
 	{
-
+		return parent::read('runtime/' . $basename);
 	}
 
 	public function write($basename, $configuration)
 	{
-
+		parent::write('runtime/' . $basename, $configuration);
 	}
 
 }
