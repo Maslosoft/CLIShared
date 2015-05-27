@@ -4,6 +4,8 @@ namespace Maslosoft\Cli\Shared\Adapters\Internal;
 
 use Maslosoft\Cli\Shared\Adapters\PhpAdapter;
 use Maslosoft\Cli\Shared\ConfigReader;
+use Maslosoft\Cli\Shared\Helpers\FileIO;
+use Maslosoft\Cli\Shared\Helpers\PhpExporter;
 
 class PhpRuntimeAdapter extends PhpAdapter
 {
@@ -23,7 +25,8 @@ class PhpRuntimeAdapter extends PhpAdapter
 
 	public function write($basename, $configuration)
 	{
-		parent::write('runtime/' . $basename, $configuration);
+		$text = PhpExporter::export($configuration, 'Auto generated, any changes will be lost');
+		FileIO::write('runtime/' . $basename . '.php', $text);
 	}
 
 }

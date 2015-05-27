@@ -2,6 +2,8 @@
 
 namespace Maslosoft\Cli\Shared\Adapters;
 
+use Maslosoft\Cli\Shared\Helpers\FileIO;
+use Maslosoft\Cli\Shared\Helpers\PhpExporter;
 use Maslosoft\Cli\Shared\Interfaces\ConfigAdapterInterface;
 
 class PhpAdapter implements ConfigAdapterInterface
@@ -20,7 +22,7 @@ class PhpAdapter implements ConfigAdapterInterface
 
 	public function write($basename, $configuration)
 	{
-		file_put_contents($basename . '.php', var_export($configuration, true));
+		FileIO::write($basename . '.php', PhpExporter::export($configuration));
 	}
 
 }
