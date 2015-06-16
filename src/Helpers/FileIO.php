@@ -40,6 +40,11 @@ class FileIO
 	public static function write($filename, $data)
 	{
 		$path = self::getRootPath($filename);
+		$dir = dirname($path);
+		if (!file_exists($dir))
+		{
+			mkdir($dir, 0777, true);
+		}
 		return file_put_contents($path, $data);
 	}
 
