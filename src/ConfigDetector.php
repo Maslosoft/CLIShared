@@ -25,15 +25,23 @@ class ConfigDetector
 		{
 			return constant('APPLICATION_ROOT');
 		}
-		if (php_sapi_name() === 'cli')
-		{
-			return getcwd();
-		}
+		return getcwd();
 	}
 
 	public function getVendorPath()
 	{
 		// Get vendor path, similarly as getRootPath
+		return sprintf('%s/vendor', $this->getRootPath());
+	}
+
+	public function getRuntimePath()
+	{
+		return sprintf('%s/runtime', $this->getRootPath());
+	}
+
+	public function getGeneratedPath()
+	{
+		return sprintf('%s/generated', $this->getRootPath());
 	}
 
 }
