@@ -14,6 +14,7 @@ namespace Maslosoft\Cli\Shared\Helpers;
 
 class PhpExporter
 {
+
 	public static function export($data, $header = '')
 	{
 		$template = <<<TPL
@@ -30,44 +31,45 @@ TPL;
 	{
 		$i = str_repeat("\t", $ident++);
 		$result = '';
-		if(is_object($data))
+		if (is_object($data))
 		{
 			$info = new \ReflectionObject($data);
-			$defaults = $info->getDefaultProperties();
+			$defaults = get_class_vars($info->name);
+
 			$result .= sprintf("\%s::__set_state(", $info->name);
 			// Convert to array, so it can be exported easier
 			$dataArray = [];
-			foreach($info->getProperties() as $property)
+			foreach ($info->getProperties() as $property)
 			{
 				// Skip static
-				if($property->isStatic())
+				if ($property->isStatic())
 				{
 					continue;
 				}
-				
+
 				// Skip private
-				if($property->isPrivate())
+				if ($property->isPrivate())
 				{
 					continue;
 				}
 				$name = $property->name;
-				
+
 				// Skip unset properties
-				if($property->isPublic() && !isset($data->$name))
+				if ($property->isPublic() && !isset($data->$name))
 				{
 					continue;
 				}
 				$property->setAccessible(true);
 				$value = $property->getValue($data);
-				
+
 				// Skip if has default value
-				if(isset($defaults[$name]) && $defaults[$name] === $value)
+				if (isset($defaults[$name]) && $defaults[$name] === $value)
 				{
 					continue;
 				}
 				$dataArray[$name] = $value;
 			}
-			if(empty($dataArray))
+			if (empty($dataArray))
 			{
 				// Just "[]" so ignore identation
 				$i = '';
@@ -82,29 +84,29 @@ TPL;
 			$result .= ")";
 			return $result;
 		}
-		elseif(is_array($data))
+		elseif (is_array($data))
 		{
-			if(empty($data))
-		   {
-			   return "[]";
-		   }
+			if (empty($data))
+			{
+				return "[]";
+			}
 			$result .= "[\n";
 			$ident++;
 			$i = str_repeat("\t", $ident);
-			foreach($data as $key => $value)
+			foreach ($data as $key => $value)
 			{
 				// Use var_export for keys too to prevent numeric keys
 				$itemIdent = 0;
-				if(!empty($value))
+				if (!empty($value))
 				{
-					if(is_object($value) || is_array($value))
+					if (is_object($value) || is_array($value))
 					{
 						$itemIdent = $ident;
 					}
 				}
 				$result .= sprintf($i . "%s => %s,\n", var_export($key, true), self::dump($value, $itemIdent));
 			}
-			
+
 			// Shift left closing bracket
 			$ident--;
 			$ident--;
@@ -117,4 +119,5 @@ TPL;
 			return $i . var_export($data, true);
 		}
 	}
+
 }
