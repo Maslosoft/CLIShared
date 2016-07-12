@@ -12,6 +12,8 @@
 
 namespace Maslosoft\Cli\Shared\Helpers;
 
+use Symfony\Component\Finder\Finder;
+
 /**
  * FinderFactory
  *
@@ -20,9 +22,14 @@ namespace Maslosoft\Cli\Shared\Helpers;
 class FinderFactory
 {
 
-	public static function create()
+	public function __construct()
 	{
 		
+	}
+
+	public function create($config = [])
+	{
+		$finder = new Finder();
 	}
 
 }
