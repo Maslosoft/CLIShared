@@ -155,7 +155,23 @@ class Logger implements LoggerInterface
 		{
 			return;
 		}
-
+		$patterns = [
+			// Backtics
+			'~`(.+?)`~',
+			// Errors
+			'~(Error\W)~',
+			// Warnings
+			'~(Warning\W)~'
+		];
+		$replacements = [
+			// Backtics to info block
+			'<info>$1</info>',
+			// Make errors shine
+			'<error>$1</error>',
+			// Make warnings noticable
+			'<comment>$1</comment>',
+		];
+		$message = preg_replace($patterns, $replacements, $message);
 		// Always show high level messages:
 		// emergency
 		// alert
