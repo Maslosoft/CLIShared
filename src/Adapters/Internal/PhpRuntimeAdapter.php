@@ -7,7 +7,6 @@
  * @license AGPL, Commercial
  *
  * @copyright Copyright (c) Peter Maselkowski <pmaselkowski@gmail.com>
- *
  */
 
 namespace Maslosoft\Cli\Shared\Adapters\Internal;
