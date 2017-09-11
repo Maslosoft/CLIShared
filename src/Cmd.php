@@ -32,13 +32,16 @@ class Cmd
 		else
 		{
 //			exec($command . " > /dev/null &");
-			exec($command . " > " . MASLOSOFT_RUNTIME_PATH .  "/cmd &");
+			exec($command . " > " . MASLOSOFT_RUNTIME_PATH . "/cmd &");
 		}
 	}
 
 	public static function run($command)
 	{
-		exec($command . " > " . MASLOSOFT_RUNTIME_PATH .  "/cmd");
+		$output = '';
+		$return = null;
+		exec($command . " > " . MASLOSOFT_RUNTIME_PATH . "/cmd", $output, $return);
+		return $return;
 	}
 
 }
