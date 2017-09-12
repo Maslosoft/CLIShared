@@ -34,10 +34,12 @@ class Io
 		// Silence out errors to get return value of mkdir
 		$level = error_reporting();
 		error_reporting(0);
-		if (!mkdir($dirname))
+		$mask = umask(0);
+		if (!mkdir($dirname, 0777))
 		{
 			return false;
 		}
+		umask($mask);
 		unlink($filename);
 		error_reporting($level);
 		return $dirname;
