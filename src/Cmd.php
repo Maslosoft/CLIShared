@@ -31,16 +31,25 @@ class Cmd
 		}
 		else
 		{
-//			exec($command . " > /dev/null &");
-			exec($command . " > " . MASLOSOFT_RUNTIME_PATH . "/cmd &");
+			self::run($command . " &");
 		}
 	}
 
-	public static function run($command)
+	public static function run($command, & $output = null)
 	{
-		$output = '';
-		$return = null;
-		exec($command . " > " . MASLOSOFT_RUNTIME_PATH . "/cmd", $output, $return);
+		$pipes = [];
+		$descriptorspec = [
+			2 => ["pipe", "w"]
+		];
+		$process = proc_open($command, $descriptorspec, $pipes);
+
+		if (is_resource($process))
+		{
+			$output = stream_get_contents($pipes[2]);
+			fclose($pipes[2]);
+			$return = proc_close($process);
+		}
+
 		return $return;
 	}
 
