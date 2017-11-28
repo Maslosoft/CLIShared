@@ -17,9 +17,9 @@
 		}
 	},
 	"require": {
-		"symfony/yaml": "~3",
-		"symfony/finder": "~3",
-		"psr/log": "^1"
+		"psr/log": "^1",
+		"symfony/finder": "^3",
+		"symfony/yaml": "^3"
 	},
 	"require-dev": {
 		"maslosoft/hedron": "*"
