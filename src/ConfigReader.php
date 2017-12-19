@@ -42,7 +42,7 @@ class ConfigReader
 		}
 		if (!empty($this->_srcConfig))
 		{
-			// Source config in found, write it to php cafig for later use and better performance
+			// Source config in found, write it to php config for later use and better performance
 			$this->_phpConfig = $this->_srcConfig;
 		}
 		else
