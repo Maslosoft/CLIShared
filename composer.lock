@@ -164,16 +164,16 @@
     "packages-dev": [
         {
             "name": "maslosoft/addendum",
-            "version": "5.0.14",
+            "version": "5.0.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Maslosoft/Addendum.git",
-                "reference": "34866e38c263df82ebad736c577c25621c060f1b"
+                "reference": "60fc22824ded3f0fd06b7c3531a9a12a92fa2d45"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Maslosoft/Addendum/zipball/34866e38c263df82ebad736c577c25621c060f1b",
-                "reference": "34866e38c263df82ebad736c577c25621c060f1b",
+                "url": "https://api.github.com/repos/Maslosoft/Addendum/zipball/60fc22824ded3f0fd06b7c3531a9a12a92fa2d45",
+                "reference": "60fc22824ded3f0fd06b7c3531a9a12a92fa2d45",
                 "shasum": ""
             },
             "require": {
@@ -186,7 +186,8 @@
                 "psr/log": "~1"
             },
             "require-dev": {
-                "maslosoft/addendumtest": "dev-master",
+                "codeception/codeception": "*",
+                "codeception/specify": "0.4.*",
                 "maslosoft/hedron": "*"
             },
             "suggest": {
@@ -219,7 +220,7 @@
                 "annotations",
                 "metadata"
             ],
-            "time": "2017-12-06T10:54:25+00:00"
+            "time": "2017-12-19T11:39:13+00:00"
         },
         {
             "name": "maslosoft/cache",
@@ -396,27 +397,30 @@
         },
         {
             "name": "maslosoft/signals",
-            "version": "2.0.8",
+            "version": "2.0.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Maslosoft/Signals.git",
-                "reference": "4d623aecbe2b19f04d56eb93a0a5762ea426efeb"
+                "reference": "6f7dec70156a964789648184834e01eff7a07054"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Maslosoft/Signals/zipball/4d623aecbe2b19f04d56eb93a0a5762ea426efeb",
-                "reference": "4d623aecbe2b19f04d56eb93a0a5762ea426efeb",
+                "url": "https://api.github.com/repos/Maslosoft/Signals/zipball/6f7dec70156a964789648184834e01eff7a07054",
+                "reference": "6f7dec70156a964789648184834e01eff7a07054",
                 "shasum": ""
             },
             "require": {
                 "maslosoft/addendum": "*",
                 "maslosoft/cli-shared": "*",
                 "maslosoft/embedi": "*",
-                "psr/log": "~1"
+                "psr/log": "^1",
+                "symfony/console": ">=2.7 <5.0"
             },
             "require-dev": {
+                "codeception/codeception": "*",
+                "codeception/specify": "*",
                 "maslosoft/hedron": "*",
-                "maslosoft/signalstest": "dev-master"
+                "maslosoft/zamm": "*"
             },
             "bin": [
                 "signals"
@@ -424,7 +428,9 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Maslosoft\\Signals\\": "src"
+                    "Maslosoft\\Signals\\": "src",
+                    "Maslosoft\\SignalsExamples\\": "examples",
+                    "Maslosoft\\SignalsTest\\Extensions\\": "tests/extensions"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -450,7 +456,7 @@
                 "slot",
                 "slots"
             ],
-            "time": "2017-02-02T11:54:22+00:00"
+            "time": "2017-12-19T11:36:39+00:00"
         },
         {
             "name": "symfony/console",
