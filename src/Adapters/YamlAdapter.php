@@ -20,7 +20,12 @@ class YamlAdapter implements ConfigAdapterInterface
 
 	public function read($basename)
 	{
-		return Yaml::parse(FileIO::read($basename . '.yml'));
+		$yamlConfig = FileIO::read($basename . '.yml');
+		if(empty($yamlConfig))
+		{
+			return [];
+		}
+		return Yaml::parse($yamlConfig);
 	}
 
 	public function write($basename, $configuration)
