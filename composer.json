@@ -1,15 +1,22 @@
 {
 	"name": "maslosoft/cli-shared",
 	"description": "Shared CLI application components",
+	"type": "library",
 	"authors": [
 		{
 			"name": "Peter Maselkowski",
 			"email": "pmaselkowski@gmail.com"
 		}
 	],
+	"keywords": [
+		"php",
+		"cli",
+		"helpers",
+		"command-line"
+	],
 	"license": [
-		"AGPL",
-		"Commercial"
+ 		"AGPL-3.0-only",
+ 		"proprietary"
 	],
 	"autoload": {
 		"psr-4": {
