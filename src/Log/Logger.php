@@ -12,6 +12,7 @@
 namespace Maslosoft\Cli\Shared\Log;
 
 use Psr\Log\LoggerInterface;
+use function strpos;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
@@ -64,6 +65,10 @@ class Logger extends Base implements LoggerInterface
 		//
 		if ($level === self::LevelHigh)
 		{
+			if(strpos($message, '<error>') === false)
+			{
+				$message = "<error>$message</error>";
+			}
 			$this->output->writeln($message);
 			return;
 		}
@@ -79,6 +84,10 @@ class Logger extends Base implements LoggerInterface
 		//
 		if ($this->output->isVerbose() && $level > self::LevelLow)
 		{
+			if(strpos($message, '<comment>') === false)
+			{
+				$message = "<comment>$message</comment>";
+			}
 			$this->output->writeln($message);
 			return;
 		}
