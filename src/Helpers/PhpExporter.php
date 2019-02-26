@@ -137,14 +137,8 @@ TPL;
 			}
 			if (empty($dataArray))
 			{
-				// Just "[]" so ignore identation
-				$i = '';
+				// Just "[]" so ignore indentation
 				$ident = 0;
-			}
-			else
-			{
-				// Decrease ident, as we do another dump here
-				//$ident--;
 			}
 			$result .= self::dump($dataArray, $ident);
 			$result .= ")";
