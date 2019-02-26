@@ -1,9 +1,13 @@
 <?php
+
 /**
- * Created by PhpStorm.
- * User: peter
- * Date: 28.11.17
- * Time: 11:13
+ * This software package is dual licensed under AGPL and Proprietary license.
+ *
+ * @package maslosoft/cli-shared
+ * @licence AGPL or Proprietary
+ * @copyright Copyright (c) Piotr Masełkowski <peter@maslosoft.com>
+ * @copyright Copyright (c) Maslosoft
+ * @link https://maslosoft.com/cli-shared/
  */
 
 namespace Maslosoft\Cli\Shared;
