@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "850786bc4675ddcb871116781b3f3d37",
+    "content-hash": "63313800342c8b0087d5ab1019f7d530",
     "packages": [
         {
             "name": "psr/log",
@@ -55,16 +55,16 @@
         },
         {
             "name": "symfony/finder",
-            "version": "v4.0.2",
+            "version": "v4.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
-                "reference": "c9cdda4dc4a3182d8d6daeebce4a25fef078ea4c"
+                "reference": "8b08180f2b7ccb41062366b9ad91fbc4f1af8601"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/finder/zipball/c9cdda4dc4a3182d8d6daeebce4a25fef078ea4c",
-                "reference": "c9cdda4dc4a3182d8d6daeebce4a25fef078ea4c",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/8b08180f2b7ccb41062366b9ad91fbc4f1af8601",
+                "reference": "8b08180f2b7ccb41062366b9ad91fbc4f1af8601",
                 "shasum": ""
             },
             "require": {
@@ -100,20 +100,20 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "time": "2017-11-07T14:45:01+00:00"
+            "time": "2018-01-03T07:38:00+00:00"
         },
         {
             "name": "symfony/yaml",
-            "version": "v4.0.2",
+            "version": "v4.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "a5ee52d155f06ad23b19eb63c31228ff56ad1116"
+                "reference": "ffc60bda1d4a00ec0b32eeabf39dc017bf480028"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/a5ee52d155f06ad23b19eb63c31228ff56ad1116",
-                "reference": "a5ee52d155f06ad23b19eb63c31228ff56ad1116",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/ffc60bda1d4a00ec0b32eeabf39dc017bf480028",
+                "reference": "ffc60bda1d4a00ec0b32eeabf39dc017bf480028",
                 "shasum": ""
             },
             "require": {
@@ -158,22 +158,68 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2017-12-12T08:41:51+00:00"
+            "time": "2018-01-21T19:06:11+00:00"
         }
     ],
     "packages-dev": [
         {
-            "name": "maslosoft/addendum",
-            "version": "5.0.15",
+            "name": "erusev/parsedown",
+            "version": "1.7.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/Maslosoft/Addendum.git",
-                "reference": "60fc22824ded3f0fd06b7c3531a9a12a92fa2d45"
+                "url": "https://github.com/erusev/parsedown.git",
+                "reference": "92e9c27ba0e74b8b028b111d1b6f956a15c01fc1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Maslosoft/Addendum/zipball/60fc22824ded3f0fd06b7c3531a9a12a92fa2d45",
-                "reference": "60fc22824ded3f0fd06b7c3531a9a12a92fa2d45",
+                "url": "https://api.github.com/repos/erusev/parsedown/zipball/92e9c27ba0e74b8b028b111d1b6f956a15c01fc1",
+                "reference": "92e9c27ba0e74b8b028b111d1b6f956a15c01fc1",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8.35"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Parsedown": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Emanuil Rusev",
+                    "email": "hello@erusev.com",
+                    "homepage": "http://erusev.com"
+                }
+            ],
+            "description": "Parser for Markdown.",
+            "homepage": "http://parsedown.org",
+            "keywords": [
+                "markdown",
+                "parser"
+            ],
+            "time": "2018-03-08T01:11:30+00:00"
+        },
+        {
+            "name": "maslosoft/addendum",
+            "version": "5.0.20",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Maslosoft/Addendum.git",
+                "reference": "702c50b463681db7973096e9219a7caa36350e18"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Maslosoft/Addendum/zipball/702c50b463681db7973096e9219a7caa36350e18",
+                "reference": "702c50b463681db7973096e9219a7caa36350e18",
                 "shasum": ""
             },
             "require": {
@@ -187,8 +233,9 @@
             },
             "require-dev": {
                 "codeception/codeception": "*",
-                "codeception/specify": "0.4.*",
-                "maslosoft/hedron": "*"
+                "codeception/specify": "^0",
+                "maslosoft/hedron": "*",
+                "maslosoft/zamm": "*"
             },
             "suggest": {
                 "monolog/monolog": "Sends your logs to files, sockets, inboxes, databases and various web services"
@@ -201,26 +248,27 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "AGPL",
-                "Commercial"
+                "AGPL-3.0-only",
+                "proprietary"
             ],
             "authors": [
                 {
                     "name": "Peter Maselkowski",
-                    "email": "pmaselkowski@gmail.com",
-                    "homepage": "http://maslosoft.com",
+                    "email": "peter@maslosoft.com",
+                    "homepage": "https://maslosoft.com",
                     "role": "Developer"
                 }
             ],
-            "description": "Easy to use php annotations",
+            "description": "Powerful and easy to use PHP annotations",
             "homepage": "https://maslosoft.com/addendum/",
             "keywords": [
                 "addendum",
                 "annotation",
                 "annotations",
-                "metadata"
+                "metadata",
+                "php"
             ],
-            "time": "2017-12-19T11:39:13+00:00"
+            "time": "2018-02-01T15:26:17+00:00"
         },
         {
             "name": "maslosoft/cache",
@@ -396,17 +444,60 @@
             "time": "2017-12-19T10:31:09+00:00"
         },
         {
-            "name": "maslosoft/signals",
-            "version": "2.0.16",
+            "name": "maslosoft/miniview",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/Maslosoft/Signals.git",
-                "reference": "6f7dec70156a964789648184834e01eff7a07054"
+                "url": "https://github.com/Maslosoft/MiniView.git",
+                "reference": "78c1be3a8676698cbc23d23bce0d05c18ccb2d55"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Maslosoft/Signals/zipball/6f7dec70156a964789648184834e01eff7a07054",
-                "reference": "6f7dec70156a964789648184834e01eff7a07054",
+                "url": "https://api.github.com/repos/Maslosoft/MiniView/zipball/78c1be3a8676698cbc23d23bce0d05c18ccb2d55",
+                "reference": "78c1be3a8676698cbc23d23bce0d05c18ccb2d55",
+                "shasum": ""
+            },
+            "require-dev": {
+                "codeception/codeception": "*",
+                "maslosoft/hedron": "~1"
+            },
+            "suggest": {
+                "latte/latte": "Use tatte templates",
+                "twig/twig": "Use twig templates"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Maslosoft\\MiniView\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "AGPL",
+                "Commercial"
+            ],
+            "authors": [
+                {
+                    "name": "Peter Maselkowski",
+                    "email": "pmaselkowski@gmail.com"
+                }
+            ],
+            "description": "Mini view is minimal template rendering library based on Yii controller renderer",
+            "homepage": "https://maslosoft.com/miniview/",
+            "time": "2017-02-16T07:45:53+00:00"
+        },
+        {
+            "name": "maslosoft/signals",
+            "version": "2.0.18",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Maslosoft/Signals.git",
+                "reference": "030596df3d6f59c5752cbbdaf11b98b62997f822"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Maslosoft/Signals/zipball/030596df3d6f59c5752cbbdaf11b98b62997f822",
+                "reference": "030596df3d6f59c5752cbbdaf11b98b62997f822",
                 "shasum": ""
             },
             "require": {
@@ -435,8 +526,8 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "AGPL",
-                "Commercial"
+                "AGPL-3.0-only",
+                "proprietary"
             ],
             "authors": [
                 {
@@ -456,20 +547,168 @@
                 "slot",
                 "slots"
             ],
-            "time": "2017-12-19T11:36:39+00:00"
+            "time": "2018-02-01T13:53:47+00:00"
         },
         {
-            "name": "symfony/console",
-            "version": "v4.0.2",
+            "name": "maslosoft/staple",
+            "version": "1.0.37",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony/console.git",
-                "reference": "de8cf039eacdec59d83f7def67e3b8ff5ed46714"
+                "url": "https://github.com/Maslosoft/Staple.git",
+                "reference": "558794663da2c19a767576d3b9aaab139a976929"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/de8cf039eacdec59d83f7def67e3b8ff5ed46714",
-                "reference": "de8cf039eacdec59d83f7def67e3b8ff5ed46714",
+                "url": "https://api.github.com/repos/Maslosoft/Staple/zipball/558794663da2c19a767576d3b9aaab139a976929",
+                "reference": "558794663da2c19a767576d3b9aaab139a976929",
+                "shasum": ""
+            },
+            "require": {
+                "erusev/parsedown": "^1",
+                "maslosoft/addendum": "*",
+                "maslosoft/embedi": "*",
+                "maslosoft/miniview": "*",
+                "masterexploder/phpthumb": "^2",
+                "symfony/finder": ">=2.7 <5.0",
+                "symfony/yaml": ">=2.7 <5.0"
+            },
+            "require-dev": {
+                "maslosoft/hedron": "*"
+            },
+            "bin": [
+                "staple"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Maslosoft\\Staple\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "AGPL",
+                "Commercial"
+            ],
+            "authors": [
+                {
+                    "name": "Peter Maselkowski",
+                    "email": "pmaselkowski@gmail.com",
+                    "homepage": "https://maslosoft.com"
+                }
+            ],
+            "description": "Static Page Lightweight Enchancer",
+            "homepage": "https://maslosoft.com/staple/",
+            "time": "2018-06-20T16:26:34+00:00"
+        },
+        {
+            "name": "maslosoft/zamm",
+            "version": "1.0.21",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Maslosoft/Zamm.git",
+                "reference": "c1c854cbdf9e8349ca445540f3f5a8c6ade95be0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Maslosoft/Zamm/zipball/c1c854cbdf9e8349ca445540f3f5a8c6ade95be0",
+                "reference": "c1c854cbdf9e8349ca445540f3f5a8c6ade95be0",
+                "shasum": ""
+            },
+            "require": {
+                "erusev/parsedown": "^1.6",
+                "maslosoft/addendum": "*",
+                "maslosoft/embedi": "*",
+                "maslosoft/miniview": "*",
+                "maslosoft/staple": "*",
+                "symfony/console": ">=2.7 <5.0",
+                "symfony/finder": ">=2.7 <5.0"
+            },
+            "require-dev": {
+                "maslosoft/hedron": "*"
+            },
+            "bin": [
+                "zamm"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Maslosoft\\Zamm\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "AGPL",
+                "Commercial"
+            ],
+            "authors": [
+                {
+                    "name": "Peter Maselkowski",
+                    "email": "pmaselkowski@gmail.com"
+                }
+            ],
+            "description": "Zamm is a documentation tool",
+            "homepage": "https://maslosoft.com/zamm/",
+            "time": "2017-12-19T11:02:59+00:00"
+        },
+        {
+            "name": "masterexploder/phpthumb",
+            "version": "2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/masterexploder/PHPThumb.git",
+                "reference": "01f6aa65aa3d136e175f67da2b4ea3e316770d02"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/masterexploder/PHPThumb/zipball/01f6aa65aa3d136e175f67da2b4ea3e316770d02",
+                "reference": "01f6aa65aa3d136e175f67da2b4ea3e316770d02",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "PHPThumb": "src",
+                    "PHPThumb\\Tests": "tests"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jarrod Nettles",
+                    "email": "jarrod.nettles@icloud.com"
+                },
+                {
+                    "name": "Ian Selby",
+                    "email": "ian@gxdlabs.com"
+                }
+            ],
+            "description": "A library for manipulating images in PHP.",
+            "homepage": "https://github.com/masterexploder/PHPThumb",
+            "keywords": [
+                "image",
+                "resize",
+                "rotate"
+            ],
+            "time": "2015-09-08T22:55:44+00:00"
+        },
+        {
+            "name": "symfony/console",
+            "version": "v4.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/console.git",
+                "reference": "36d5b41e7d4e1ccf0370f6babe966c08ef0a1488"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/console/zipball/36d5b41e7d4e1ccf0370f6babe966c08ef0a1488",
+                "reference": "36d5b41e7d4e1ccf0370f6babe966c08ef0a1488",
                 "shasum": ""
             },
             "require": {
@@ -524,20 +763,20 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2017-12-14T19:48:22+00:00"
+            "time": "2018-01-29T09:06:29+00:00"
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.6.0",
+            "version": "v1.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "2ec8b39c38cb16674bbf3fea2b6ce5bf117e1296"
+                "reference": "78be803ce01e55d3491c1397cf1c64beb9c1b63b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/2ec8b39c38cb16674bbf3fea2b6ce5bf117e1296",
-                "reference": "2ec8b39c38cb16674bbf3fea2b6ce5bf117e1296",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/78be803ce01e55d3491c1397cf1c64beb9c1b63b",
+                "reference": "78be803ce01e55d3491c1397cf1c64beb9c1b63b",
                 "shasum": ""
             },
             "require": {
@@ -549,7 +788,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.6-dev"
+                    "dev-master": "1.7-dev"
                 }
             },
             "autoload": {
@@ -583,7 +822,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2017-10-11T12:05:26+00:00"
+            "time": "2018-01-30T19:27:44+00:00"
         },
         {
             "name": "zordius/lightncandy",

@@ -3,36 +3,105 @@
 /**
  * This software package is licensed under `AGPL, Commercial` license[s].
  *
- * @package maslosoft/cli-shared
- * @license AGPL, Commercial
+ * @package   maslosoft/cli-shared
+ * @license   AGPL, Commercial
  *
  * @copyright Copyright (c) Peter Maselkowski <pmaselkowski@gmail.com>
  */
 
 namespace Maslosoft\Cli\Shared\Helpers;
 
+use ReflectionObject;
+use function strpos;
+use function substr_count;
+
 class PhpExporter
 {
-
-	public static function export($data, $header = '')
-	{
-		$template = <<<TPL
+	const DefaultTemplate = <<<TPL
 <?php // %s
 return %s;
 
 TPL;
+
+	/**
+	 * Export PHP data into parsable code. Additionally
+	 * `$header` might be provided or custom template.
+	 *
+	 * If template contains one `%s` placeholder it
+	 * will be replaced with exported data.
+	 *
+	 * If `$template` contains two `%s` placeholders,
+	 * the first one will be replaced with `$header`,
+	 * the latter one with exported data.
+	 *
+	 * The default template will generate code that
+	 * cen be included in any code part, for which will
+	 * return exported data as variable.
+	 *
+	 *
+	 * The default template is made as follows:
+	 *
+	 * ```php
+	 * <?php // %s
+	 * return %s;
+	 *
+	 * ```
+	 *
+	 * Which might result in following code after exporting
+	 * data:
+	 *
+	 * For instance, the function call:
+	 *
+	 * ```php
+	 * PhpExporter::export(['value' => 1], 'My header');
+	 * ```
+	 *
+	 * Will result in output of PHP's parsable **string**:
+	 *
+	 * ```plain
+	 * <?php // My header
+	 * return [
+	 * 		'value' => 1
+	 * ];
+	 * ```
+	 * Example usage of exported data with default template:
+	 *
+	 * ```php
+	 * $myVar = require 'file-with-exported-data.php';
+	 * // $myVar contains: ['value' => 1]
+	 * ```
+	 *
+	 * @param mixed  $data
+	 * @param string $header
+	 * @param null   $template
+	 * @return string
+	 */
+	public static function export($data, $header = '', $template = null)
+	{
+		if (null === $template)
+		{
+			$template = self::DefaultTemplate;
+		}
+
+		assert(strpos($template, '%s') !== false, 'The `$template` must contain one or two %s placeholders');
+		assert(substr_count($template, '%s') < 3, 'The `$template` must contain at most two %s placeholders');
+
 		// For some reason tabs are doubled... Trim them to single tab.
-		$export = str_replace("\t\t", "\t", self::dump($data));
+		$export = self::dump($data);
+		if(substr_count($template, '%s') === 1)
+		{
+			return sprintf($template, $export);
+		}
 		return sprintf($template, $header, $export);
 	}
 
 	private static function dump($data, $ident = 0)
 	{
-		$i = str_repeat("\t", $ident++);
+		$i = str_repeat("\t", $ident);
 		$result = '';
 		if (is_object($data))
 		{
-			$info = new \ReflectionObject($data);
+			$info = new ReflectionObject($data);
 			$defaults = get_class_vars($info->name);
 
 			$result .= sprintf("\%s::__set_state(", $info->name);
@@ -53,11 +122,9 @@ TPL;
 				}
 				$name = $property->name;
 
-				// Skip unset properties
-				if ($property->isPublic() && !isset($data->$name))
-				{
-					continue;
-				}
+				// NOTE: Do *not* skip unset properties
+				// es these can have value changed.
+
 				$property->setAccessible(true);
 				$value = $property->getValue($data);
 
@@ -77,7 +144,7 @@ TPL;
 			else
 			{
 				// Decrease ident, as we do another dump here
-				$ident--;
+				//$ident--;
 			}
 			$result .= self::dump($dataArray, $ident);
 			$result .= ")";
@@ -106,8 +173,7 @@ TPL;
 				$result .= sprintf($i . "%s => %s,\n", var_export($key, true), self::dump($value, $itemIdent));
 			}
 
-			// Shift left closing bracket
-			$ident--;
+			// Shift right closing bracket
 			$ident--;
 			$i = str_repeat("\t", $ident);
 			$result .= $i . "]";
