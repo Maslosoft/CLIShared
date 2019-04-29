@@ -12,6 +12,9 @@
 
 namespace Maslosoft\Cli\Shared;
 
+use function file_exists;
+use function is_dir;
+
 /**
  * Io
  *
@@ -19,6 +22,30 @@ namespace Maslosoft\Cli\Shared;
  */
 class Io
 {
+
+	/**
+	 * Create recursive directory structure preserving
+	 * permissions on each directory level.
+	 *
+	 * @param     $path
+	 * @param int $permissions
+	 */
+	public static function mkdir($path, $permissions = 0777)
+	{
+		$mask = umask(0000);
+		mkdir($path, $permissions, true);
+		umask($mask);
+	}
+
+	public static function dirExists($path)
+	{
+		$exists = file_exists($path);
+		if($exists && is_dir($path))
+		{
+			return true;
+		}
+		return false;
+	}
 
 	/**
 	 * Create temporary directory
