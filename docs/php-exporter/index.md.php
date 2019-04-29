@@ -102,7 +102,7 @@ echo Capture::close()->md;
 ?>
 
 And the resulting array will just contain plain data structure as a **string**.
-Notice that the `name` property is **not** exported because it was changed:
+Notice that the `name` property is **not** exported because it was **not** changed:
 
 ```plain
 <?= $exported; ?>
