@@ -30,4 +30,36 @@ class Os
 		return !defined('PHP_WINDOWS_VERSION_MAJOR');
 	}
 
+	/**
+	 * Determines if a command exists on the current environment
+	 *
+	 * @see https://stackoverflow.com/a/18540185/5444623
+	 * @param string $command The command to check
+	 * @return bool True if the command has been found ; otherwise, false.
+	 */
+	public static function commandExists($command)
+	{
+		$whereIsCommand = self::isWindows() ? 'where' : 'which';
+
+		$process = proc_open(
+			"$whereIsCommand $command",
+			array(
+				0 => array("pipe", "r"), //STDIN
+				1 => array("pipe", "w"), //STDOUT
+				2 => array("pipe", "w"), //STDERR
+			),
+			$pipes
+		);
+		if ($process !== false) {
+			$stdout = stream_get_contents($pipes[1]);
+			$stderr = stream_get_contents($pipes[2]);
+			fclose($pipes[1]);
+			fclose($pipes[2]);
+			proc_close($process);
+
+			return $stdout != '';
+		}
+
+		return false;
+	}
 }

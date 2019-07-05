@@ -43,6 +43,7 @@ class FileIO
 		$dir = dirname($path);
 		if (!file_exists($dir))
 		{
+			// TODO Use Io::mkdir()
 			mkdir($dir, 0777, true);
 		}
 		return file_put_contents($path, $data);

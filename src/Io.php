@@ -32,6 +32,7 @@ class Io
 	 */
 	public static function mkdir($path, $permissions = 0777)
 	{
+		// TODO Do not use umask, but split by separator and use loop
 		$mask = umask(0000);
 		mkdir($path, $permissions, true);
 		umask($mask);
