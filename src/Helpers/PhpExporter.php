@@ -3,11 +3,11 @@
 /**
  * This software package is dual licensed under AGPL and Proprietary license.
  *
- * @package maslosoft/cli-shared
- * @licence AGPL or Proprietary
+ * @package   maslosoft/cli-shared
+ * @licence   AGPL or Proprietary
  * @copyright Copyright (c) Piotr Masełkowski <peter@maslosoft.com>
  * @copyright Copyright (c) Maslosoft
- * @link https://maslosoft.com/cli-shared/
+ * @link      https://maslosoft.com/cli-shared/
  */
 
 namespace Maslosoft\Cli\Shared\Helpers;
@@ -62,7 +62,7 @@ TPL;
 	 * ```plain
 	 * <?php // My header
 	 * return [
-	 * 		'value' => 1
+	 *        'value' => 1
 	 * ];
 	 * ```
 	 * Example usage of exported data with default template:
@@ -89,7 +89,7 @@ TPL;
 
 		// For some reason tabs are doubled... Trim them to single tab.
 		$export = self::dump($data);
-		if(substr_count($template, '%s') === 1)
+		if (substr_count($template, '%s') === 1)
 		{
 			return sprintf($template, $export);
 		}
@@ -154,6 +154,19 @@ TPL;
 			$result .= "[\n";
 			$ident++;
 			$i = str_repeat("\t", $ident);
+
+			// Whether it is bare, zero-indexed, integer keys array
+			$isBare = true;
+			$k = 0;
+			foreach ($data as $key => $value)
+			{
+				if ($key === $k++)
+				{
+					continue;
+				}
+				$isBare = false;
+			}
+
 			foreach ($data as $key => $value)
 			{
 				// Use var_export for keys too to prevent numeric keys
@@ -165,7 +178,14 @@ TPL;
 						$itemIdent = $ident;
 					}
 				}
-				$result .= sprintf($i . "%s => %s,\n", var_export($key, true), self::dump($value, $itemIdent));
+				if ($isBare)
+				{
+					$result .= sprintf($i . "%s,\n", self::dump($value, $itemIdent));
+				}
+				else
+				{
+					$result .= sprintf($i . "%s => %s,\n", var_export($key, true), self::dump($value, $itemIdent));
+				}
 			}
 
 			// Shift right closing bracket
