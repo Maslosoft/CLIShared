@@ -117,4 +117,24 @@ class Io
 		$dir->close();
 		return true;
 	}
+
+	/**
+	 * Recursively remove directory
+	 * @param $dir
+	 * @link https://stackoverflow.com/a/3338133/5444623
+	 */
+	public static function rmdir($dir) {
+		if (is_dir($dir)) {
+			$objects = scandir($dir);
+			foreach ($objects as $object) {
+				if ($object !== '.' && $object !== '..') {
+					if (is_dir($dir."/".$object) && !is_link($dir."/".$object))
+						self::rmdir($dir."/".$object);
+					else
+						unlink($dir."/".$object);
+				}
+			}
+			rmdir($dir);
+		}
+	}
 }
