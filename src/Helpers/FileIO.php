@@ -12,7 +12,12 @@
 
 namespace Maslosoft\Cli\Shared\Helpers;
 
+use Maslosoft\Cli\Shared\Cmd;
 use Maslosoft\Cli\Shared\ConfigDetector;
+use Maslosoft\Cli\Shared\Io;
+use function assert;
+use function escapeshellarg;
+use function implode;
 
 class FileIO
 {
@@ -37,16 +42,34 @@ class FileIO
 		return file_get_contents($path);
 	}
 
-	public static function write($filename, $data)
+	public static function write(string $filename, $data)
 	{
 		$path = self::getRootPath($filename);
 		$dir = dirname($path);
 		if (!file_exists($dir))
 		{
-			// TODO Use Io::mkdir()
-			mkdir($dir, 0777, true);
+			Io::mkdir($dir);
 		}
 		return file_put_contents($path, $data);
 	}
 
+	public static function symlink(string $target, string $link, bool $relative = true)
+	{
+		assert(!empty($target));
+		assert(!empty($link));
+		$cmd = [
+			'ln'
+		];
+		if($relative)
+		{
+			$cmd[] = '-sr';
+		}
+		else
+		{
+			$cmd[] = '-s';
+		}
+		$cmd[] = escapeshellarg($target);
+		$cmd[] = escapeshellarg($link);
+		Cmd::run(implode(' ', $cmd));
+	}
 }
