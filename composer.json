@@ -24,6 +24,7 @@
         }
     },
     "require": {
+        "php": ">=8",
         "psr/log": "^1",
         "symfony/finder": ">=2.7 <5.0",
         "symfony/yaml": ">=2.7 <5.0"
