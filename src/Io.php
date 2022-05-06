@@ -13,8 +13,12 @@
 namespace Maslosoft\Cli\Shared;
 
 use RuntimeException;
+use function chmod;
 use function file_exists;
 use function is_dir;
+use function is_writable;
+use function rtrim;
+use const DIRECTORY_SEPARATOR;
 
 /**
  * Io
@@ -29,17 +33,26 @@ class Io
 	 * permissions on each directory level.
 	 *
 	 * @param string $path
-	 * @param int    $permissions
+	 * @param int    $permissions Defaults to 0777
 	 */
 	public static function mkdir(string $path, int $permissions = 0777): void
 	{
-		// TODO Do not use umask, but split by separator and use loop
-		$mask = umask(0000);
-		if(!self::dirExists($path) && !mkdir($path, $permissions, true) && !is_dir($path))
+		$path = rtrim($path, DIRECTORY_SEPARATOR);
+		$parts = explode(DIRECTORY_SEPARATOR, $path);
+		$pathParts = '';
+		foreach($parts as $dir)
 		{
-			throw new RuntimeException(sprintf('Directory "%s" was not created', $path));
+			$pathParts .= $dir . DIRECTORY_SEPARATOR;
+			if(self::dirExists($pathParts))
+			{
+				continue;
+			}
+			if (!self::dirExists($pathParts) && !mkdir($pathParts) && !is_dir($pathParts))
+			{
+				throw new RuntimeException(sprintf('Directory `%s` was not created in path `%s`', $dir, $pathParts));
+			}
+			chmod($pathParts, $permissions);
 		}
-		umask($mask);
 	}
 
 	/**
@@ -66,17 +79,15 @@ class Io
 	{
 		$filename = tempnam($dir, $prefix);
 		$dirname = $filename . 'dir';
-		// Silence out errors to get return value of mkdir
-		$level = error_reporting();
-		error_reporting(0);
-		$mask = umask(0);
-		if (!mkdir($dirname, 0777) && !is_dir($dirname))
+		self::mkdir($dirname);
+		if(!self::dirExists($dirname))
 		{
 			return false;
 		}
-		umask($mask);
-		unlink($filename);
-		error_reporting($level);
+		if(!is_writable($dirname))
+		{
+			return false;
+		}
 		return $dirname;
 	}
 
