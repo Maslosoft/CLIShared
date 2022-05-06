@@ -20,12 +20,12 @@ namespace Maslosoft\Cli\Shared;
 class Os
 {
 
-	public static function isWindows()
+	public static function isWindows(): bool
 	{
 		return defined('PHP_WINDOWS_VERSION_MAJOR');
 	}
 
-	public static function isUnix()
+	public static function isUnix(): bool
 	{
 		return !defined('PHP_WINDOWS_VERSION_MAJOR');
 	}
@@ -37,17 +37,17 @@ class Os
 	 * @param string $command The command to check
 	 * @return bool True if the command has been found ; otherwise, false.
 	 */
-	public static function commandExists($command)
+	public static function commandExists(string $command): bool
 	{
 		$whereIsCommand = self::isWindows() ? 'where' : 'which';
 
 		$process = proc_open(
 			"$whereIsCommand $command",
-			array(
-				0 => array("pipe", "r"), //STDIN
-				1 => array("pipe", "w"), //STDOUT
-				2 => array("pipe", "w"), //STDERR
-			),
+			[
+				0 => ["pipe", "r"], //STDIN
+				1 => ["pipe", "w"], //STDOUT
+				2 => ["pipe", "w"], //STDERR
+			],
 			$pipes
 		);
 		if ($process !== false) {
@@ -57,7 +57,7 @@ class Os
 			fclose($pipes[2]);
 			proc_close($process);
 
-			return $stdout != '';
+			return $stdout !== '';
 		}
 
 		return false;
