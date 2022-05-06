@@ -28,21 +28,26 @@ class Io
 	 * Create recursive directory structure preserving
 	 * permissions on each directory level.
 	 *
-	 * @param     $path
-	 * @param int $permissions
+	 * @param string $path
+	 * @param int    $permissions
 	 */
-	public static function mkdir($path, $permissions = 0777)
+	public static function mkdir(string $path, int $permissions = 0777): void
 	{
 		// TODO Do not use umask, but split by separator and use loop
 		$mask = umask(0000);
-		if (!mkdir($path, $permissions, true) && !is_dir($path))
+		if(!self::dirExists($path) && !mkdir($path, $permissions, true) && !is_dir($path))
 		{
 			throw new RuntimeException(sprintf('Directory "%s" was not created', $path));
 		}
 		umask($mask);
 	}
 
-	public static function dirExists($path)
+	/**
+	 * Check if directory exists, including fact that it is directory
+	 * @param string $path
+	 * @return bool
+	 */
+	public static function dirExists(string $path): bool
 	{
 		$exists = file_exists($path);
 		return $exists && is_dir($path);
@@ -55,9 +60,9 @@ class Io
 	 * @param string $prefix The prefix of the generated temporary filename. Windows uses only the first three
 	 *                       characters of prefix.
 	 *
-	 * @return string The new temporary filename (with path), or FALSE on failure.
+	 * @return string|bool The new temporary filename (with path), or FALSE on failure.
 	 */
-	public static function tempDir($dir, $prefix = '')
+	public static function tempDir(string $dir, string $prefix = ''): string|bool
 	{
 		$filename = tempnam($dir, $prefix);
 		$dirname = $filename . 'dir';
@@ -101,7 +106,7 @@ class Io
 		}
 
 		// Make destination directory
-		if (!is_dir($dest))
+		if (!self::dirExists($dest))
 		{
 			self::mkdir($dest, $permissions);
 		}
