@@ -1,7 +1,7 @@
 <!--header-->
 <!-- Auto generated do not modify between `header` and `/header` -->
 
-# <a href="https://maslosoft.com/cli-shared/">Maslosoft Cli Shared</a>
+# <a href="https://maslosoft.com/cli-shared/"><img src="https://maslosoft.com/cli-shared/cli-shared.svg" style="height:24px;" alt="Cli-shared Logo"></a> <a href="https://maslosoft.com/cli-shared/">Maslosoft Cli Shared</a>
 <a href="https://maslosoft.com/cli-shared/">_Shared CLI application components_</a>
 
 <a href="https://packagist.org/packages/maslosoft/cli-shared" title="Latest Stable Version">
