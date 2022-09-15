@@ -1,0 +1,40 @@
+<!--header-->
+<!-- Auto generated do not modify between `header` and `/header` -->
+
+# <a href="https://maslosoft.com/cli-shared/">Maslosoft Cli Shared</a>
+<a href="https://maslosoft.com/cli-shared/">_Shared CLI application components_</a>
+
+<a href="https://packagist.org/packages/maslosoft/cli-shared" title="Latest Stable Version">
+<img src="https://poser.pugx.org/maslosoft/cli-shared/v/stable.svg" alt="Latest Stable Version" style="height: 20px;"/>
+</a>
+<a href="https://packagist.org/packages/maslosoft/cli-shared" title="License">
+<img src="https://poser.pugx.org/maslosoft/cli-shared/license.svg" alt="License" style="height: 20px;"/>
+</a>
+
+### Quick Install
+```bash
+composer require maslosoft/cli-shared
+```
+
+### Documentation
+
+<a href="https://maslosoft.com/cli-shared/docs/">Full Cli-shared Documentation</a>
+
+
+
+
+
+# Command Line Shared Components
+
+This library contains commonly used miscleanous classes
+mostly useful in PHP command line interface applications.
+
+This includes, but are not limited to:
+
+* Kind of operating system type helper - whether is is Windows&reg; or Linux
+* Caching configuration file reader
+* Inline logger compatible with PSR Logger Interface
+* PHP data exporter similar to `var_export`
+
+
+<!--/header--> 
