@@ -20,20 +20,20 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class FileLogger extends Base implements LoggerInterface
 {
-	private $filename = '';
+	private string $filename;
 
 	/**
 	 * Output
 	 * @var OutputInterface
 	 */
-	private $output = null;
+	private OutputInterface $output;
 
 	/**
 	 * FileLogger constructor.
-	 * @param string $filename Base filename
-	 * @param bool $datePrefix Whether to add date prefix to file name
+	 * @param string $filename   Base filename
+	 * @param bool   $datePrefix Whether to add date prefix to file name
 	 */
-	public function __construct(OutputInterface $output, $filename = 'op.log', $datePrefix = true)
+	public function __construct(OutputInterface $output, string $filename = 'op.log', $datePrefix = true)
 	{
 		$this->output = $output;
 		$this->filename = $filename;
@@ -43,7 +43,7 @@ class FileLogger extends Base implements LoggerInterface
 		}
 	}
 
-	protected function add($level, $message)
+	protected function add($level, $message): void
 	{
 		if ($this->output->isQuiet())
 		{
@@ -102,7 +102,7 @@ class FileLogger extends Base implements LoggerInterface
 		}
 	}
 
-	private function writeln($message)
+	private function writeln($message): void
 	{
 		@file_put_contents($this->filename, $message, FILE_APPEND);
 	}

@@ -2,7 +2,6 @@
 
 namespace Maslosoft\Cli\Shared\Log;
 
-use Maslosoft\Cli\Shared\Log\Logger;
 use Psr\Log\LoggerAwareInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use function assert;

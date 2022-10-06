@@ -35,7 +35,7 @@ class Logger extends Base implements LoggerInterface
 		$this->output = $output;
 	}
 
-	protected function add($level, $message)
+	protected function add($level, $message): void
 	{
 		if ($this->output->isQuiet())
 		{
