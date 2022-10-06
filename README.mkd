@@ -26,12 +26,12 @@ composer require maslosoft/cli-shared
 
 # Command Line Shared Components
 
-This library contains commonly used miscleanous classes
+This library contains commonly used miscellaneous classes
 mostly useful in PHP command line interface applications.
 
 This includes, but are not limited to:
 
-* Kind of operating system type helper - whether is is Windows&reg; or Linux
+* Kind of operating system type helper - whether it is Windows&reg; or Linux
 * Caching configuration file reader
 * Inline logger compatible with PSR Logger Interface
 * PHP data exporter similar to `var_export`
