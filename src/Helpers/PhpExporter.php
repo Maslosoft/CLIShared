@@ -13,12 +13,12 @@
 namespace Maslosoft\Cli\Shared\Helpers;
 
 use ReflectionObject;
-use function strpos;
+use function str_contains;
 use function substr_count;
 
 class PhpExporter
 {
-	const DefaultTemplate = <<<TPL
+	public const DefaultTemplate = <<<TPL
 <?php // %s
 return %s;
 
@@ -77,20 +77,21 @@ TPL;
 	 * @param null   $template
 	 * @return string
 	 */
-	public static function export($data, $header = '', $template = null)
+	public static function export(mixed $data, string $header = '', $template = null): string
 	{
 		if (null === $template)
 		{
 			$template = self::DefaultTemplate;
 		}
 
-		assert(strpos($template, '%s') !== false, 'The `$template` must contain one or two %s placeholders');
+		assert(str_contains($template, '%s'), 'The `$template` must contain one or two %s placeholders');
 		assert(substr_count($template, '%s') < 3, 'The `$template` must contain at most two %s placeholders');
 
 		// For some reason tabs are doubled... Trim them to single tab.
 		$export = self::dump($data);
 		if (substr_count($template, '%s') === 1)
 		{
+			/** @noinspection PrintfScanfArgumentsInspection */
 			return sprintf($template, $export);
 		}
 		return sprintf($template, $header, $export);
