@@ -29,7 +29,7 @@ class YamlAdapter implements ConfigAdapterInterface
 		return Yaml::parse($yamlConfig);
 	}
 
-	public function write($basename, $configuration)
+	public function write($basename, $configuration): false|int
 	{
 		return FileIO::write($basename . '.yml', Yaml::dump($configuration, 4));
 	}
