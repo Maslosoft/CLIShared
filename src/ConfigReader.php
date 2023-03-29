@@ -31,6 +31,7 @@ class ConfigReader
 	private ?ConfigAdapterInterface $_adapter;
 	private ?array $_phpConfig;
 	private ?array $_srcConfig = null;
+	private string $_basename;
 
 	public function __construct($basename, ConfigAdapterInterface $adapter = null)
 	{
