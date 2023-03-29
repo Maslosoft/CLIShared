@@ -32,7 +32,12 @@ class FileIO
 		return $filename;
 	}
 
-	public static function read($filename)
+	/**
+	 * Read file if it exists or returns null otherwise
+	 * @param $filename
+	 * @return string|null
+	 */
+	public static function read($filename): string|null
 	{
 		$path = self::getRootPath($filename);
 		if (!file_exists($path))
@@ -42,7 +47,13 @@ class FileIO
 		return file_get_contents($path);
 	}
 
-	public static function write(string $filename, $data)
+	/**
+	 * Write data to a file while creating new directories too
+	 * @param string $filename
+	 * @param string $data
+	 * @return false|int
+	 */
+	public static function write(string $filename, string $data): false|int
 	{
 		$path = self::getRootPath($filename);
 		$dir = dirname($path);
@@ -53,7 +64,15 @@ class FileIO
 		return file_put_contents($path, $data);
 	}
 
-	public static function symlink(string $target, string $link, bool $relative = true)
+	/**
+	 * Create symlink.
+	 * NOTE: Unix only!
+	 * @param string $target
+	 * @param string $link
+	 * @param bool   $relative
+	 * @return void
+	 */
+	public static function symlink(string $target, string $link, bool $relative = true): void
 	{
 		assert(!empty($target));
 		assert(!empty($link));
