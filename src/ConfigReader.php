@@ -26,18 +26,18 @@ class ConfigReader
 
 	/**
 	 *
-	 * @var ConfigAdapterInterface
+	 * @var ConfigAdapterInterface|null
 	 */
-	private $_adapter = null;
-	private $_phpConfig;
-	private $_srcConfig;
+	private ?ConfigAdapterInterface $_adapter;
+	private ?array $_phpConfig;
+	private ?array $_srcConfig = null;
 
 	public function __construct($basename, ConfigAdapterInterface $adapter = null)
 	{
 		$this->_basename = $basename;
 		$this->_adapter = $adapter;
-		$this->_srcConfig = null;
-		if (php_sapi_name() == 'cli')
+
+		if (PHP_SAPI === 'cli')
 		{
 			$this->_srcConfig = $this->getAdapter()->read($this->_basename);
 		}
@@ -53,10 +53,10 @@ class ConfigReader
 	}
 
 	/**
-	 * Get confguration as php array
+	 * Get configuration as php array
 	 * @return mixed[]
 	 */
-	public function toArray()
+	public function toArray(): array
 	{
 		if (empty($this->_phpConfig))
 		{
@@ -76,7 +76,7 @@ class ConfigReader
 	/**
 	 *
 	 */
-	public function getAdapter()
+	public function getAdapter(): ConfigAdapterInterface
 	{
 		if (null === $this->_adapter)
 		{
@@ -85,7 +85,7 @@ class ConfigReader
 		return $this->_adapter;
 	}
 
-	public function setAdapter(ConfigAdapterInterface $adapter)
+	public function setAdapter(ConfigAdapterInterface $adapter): void
 	{
 		$this->_adapter = $adapter;
 	}
