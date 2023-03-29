@@ -28,28 +28,28 @@ class ConfigReader
 	 *
 	 * @var ConfigAdapterInterface|null
 	 */
-	private ?ConfigAdapterInterface $_adapter;
-	private ?array $_phpConfig;
-	private ?array $_srcConfig = null;
-	private string $_basename;
+	private ?ConfigAdapterInterface $adapter;
+	private ?array $phpConfig;
+	private ?array $srcConfig = null;
+	private string $basename;
 
 	public function __construct($basename, ConfigAdapterInterface $adapter = null)
 	{
-		$this->_basename = $basename;
-		$this->_adapter = $adapter;
+		$this->basename = $basename;
+		$this->adapter = $adapter;
 
 		if (PHP_SAPI === 'cli')
 		{
-			$this->_srcConfig = $this->getAdapter()->read($this->_basename);
+			$this->srcConfig = $this->getAdapter()->read($this->basename);
 		}
-		if (!empty($this->_srcConfig))
+		if (!empty($this->srcConfig))
 		{
 			// Source config in found, write it to php config for later use and better performance
-			$this->_phpConfig = $this->_srcConfig;
+			$this->phpConfig = $this->srcConfig;
 		}
 		else
 		{
-			$this->_phpConfig = (new PhpRuntimeAdapter($this))->read($this->_basename);
+			$this->phpConfig = (new PhpRuntimeAdapter($this))->read($this->basename);
 		}
 	}
 
@@ -59,18 +59,18 @@ class ConfigReader
 	 */
 	public function toArray(): array
 	{
-		if (empty($this->_phpConfig))
+		if (empty($this->phpConfig))
 		{
 			return [];
 		}
-		return (array) $this->_phpConfig;
+		return (array) $this->phpConfig;
 	}
 
 	public function __destruct()
 	{
-		if (!empty($this->_srcConfig))
+		if (!empty($this->srcConfig))
 		{
-			(new PhpRuntimeAdapter($this))->write($this->_basename, $this->_phpConfig);
+			(new PhpRuntimeAdapter($this))->write($this->basename, $this->phpConfig);
 		}
 	}
 
@@ -79,16 +79,16 @@ class ConfigReader
 	 */
 	public function getAdapter(): ConfigAdapterInterface
 	{
-		if (null === $this->_adapter)
+		if (null === $this->adapter)
 		{
-			$this->_adapter = new YamlAdapter();
+			$this->adapter = new YamlAdapter();
 		}
-		return $this->_adapter;
+		return $this->adapter;
 	}
 
 	public function setAdapter(ConfigAdapterInterface $adapter): void
 	{
-		$this->_adapter = $adapter;
+		$this->adapter = $adapter;
 	}
 
 }
