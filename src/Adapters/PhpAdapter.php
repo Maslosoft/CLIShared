@@ -30,9 +30,9 @@ class PhpAdapter implements ConfigAdapterInterface
 		return $config;
 	}
 
-	public function write($basename, $configuration)
+	public function write($basename, $configuration): false|int
 	{
-		FileIO::write($basename . '.php', PhpExporter::export($configuration));
+		return FileIO::write($basename . '.php', PhpExporter::export($configuration));
 	}
 
 }
