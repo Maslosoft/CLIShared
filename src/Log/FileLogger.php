@@ -46,12 +46,14 @@ class FileLogger extends Base implements LoggerInterface
 		}
 	}
 
-	protected function add($level, $message): void
+	protected function add($level, $message, $context = []): void
 	{
 		if ($this->output->isQuiet())
 		{
 			return;
 		}
+
+		$this->decorate($message, $context);
 
 		// Always show high level messages:
 		// emergency
