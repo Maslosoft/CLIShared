@@ -39,7 +39,10 @@ class FileLogger extends Base implements LoggerInterface
 		$this->filename = $filename;
 		if($datePrefix)
 		{
-			$this->filename = sprintf('%s_%s', date('Y-m-d'), $this->filename);
+			$dir = dirname($filename);
+			$basename = basename($filename);
+			$basename = sprintf('%s_%s', date('Y-m-d'), $basename);
+			$this->filename = $dir . DIRECTORY_SEPARATOR . $basename;
 		}
 	}
 
