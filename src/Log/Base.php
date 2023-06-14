@@ -13,6 +13,8 @@
 namespace Maslosoft\Cli\Shared\Log;
 
 
+use Stringable;
+
 abstract class Base
 {
 	public const LevelHigh = 3;
@@ -20,17 +22,17 @@ abstract class Base
 	public const LevelLow = 1;
 	public const LevelDebug = 0;
 
-	abstract protected function add($level, $message);
+	abstract protected function add($level, $message, $context = []);
 
 	/**
 	 * System is unusable.
 	 *
-	 * @param string $message
-	 * @param array $context
+	 * @param string|Stringable $message
+	 * @param array             $context
 	 */
-	public function emergency($message, array $context = array()): void
+	public function emergency(string|Stringable $message, array $context = []): void
 	{
-		$this->add(self::LevelHigh, $message);
+		$this->add(self::LevelHigh, $message, $context);
 	}
 
 	/**
@@ -39,12 +41,12 @@ abstract class Base
 	 * Example: Entire website down, database unavailable, etc. This should
 	 * trigger the SMS alerts and wake you up.
 	 *
-	 * @param string $message
-	 * @param array $context
+	 * @param string|Stringable $message
+	 * @param array             $context
 	 */
-	public function alert($message, array $context = array()): void
+	public function alert(string|Stringable $message, array $context = []): void
 	{
-		$this->add(self::LevelHigh, $message);
+		$this->add(self::LevelHigh, $message, $context);
 	}
 
 	/**
@@ -52,24 +54,24 @@ abstract class Base
 	 *
 	 * Example: Application component unavailable, unexpected exception.
 	 *
-	 * @param string $message
-	 * @param array $context
+	 * @param string|Stringable $message
+	 * @param array             $context
 	 */
-	public function critical($message, array $context = array()): void
+	public function critical(string|Stringable $message, array $context = []): void
 	{
-		$this->add(self::LevelHigh, $message);
+		$this->add(self::LevelHigh, $message, $context);
 	}
 
 	/**
 	 * Runtime errors that do not require immediate action but should typically
 	 * be logged and monitored.
 	 *
-	 * @param string $message
-	 * @param array $context
+	 * @param string|Stringable $message
+	 * @param array             $context
 	 */
-	public function error($message, array $context = array()): void
+	public function error(string|Stringable $message, array $context = []): void
 	{
-		$this->add(self::LevelHigh, $message);
+		$this->add(self::LevelHigh, $message, $context);
 	}
 
 	/**
@@ -78,23 +80,23 @@ abstract class Base
 	 * Example: Use of deprecated APIs, poor use of an API, undesirable things
 	 * that are not necessarily wrong.
 	 *
-	 * @param string $message
-	 * @param array $context
+	 * @param string|Stringable $message
+	 * @param array             $context
 	 */
-	public function warning($message, array $context = array()): void
+	public function warning(string|Stringable $message, array $context = []): void
 	{
-		$this->add(self::LevelMid, $message);
+		$this->add(self::LevelMid, $message, $context);
 	}
 
 	/**
 	 * Normal but significant events.
 	 *
-	 * @param string $message
-	 * @param array $context
+	 * @param string|Stringable $message
+	 * @param array             $context
 	 */
-	public function notice($message, array $context = array()): void
+	public function notice(string|Stringable $message, array $context = []): void
 	{
-		$this->add(self::LevelMid, $message);
+		$this->add(self::LevelMid, $message, $context);
 	}
 
 	/**
@@ -102,34 +104,34 @@ abstract class Base
 	 *
 	 * Example: User logs in, SQL logs.
 	 *
-	 * @param string $message
-	 * @param array $context
+	 * @param string|Stringable $message
+	 * @param array             $context
 	 */
-	public function info($message, array $context = array()): void
+	public function info(string|Stringable $message, array $context = []): void
 	{
-		$this->add(self::LevelLow, $message);
+		$this->add(self::LevelLow, $message, $context);
 	}
 
 	/**
 	 * Detailed debug information.
 	 *
-	 * @param string $message
-	 * @param array $context
+	 * @param string|Stringable $message
+	 * @param array             $context
 	 */
-	public function debug($message, array $context = array()): void
+	public function debug(string|Stringable $message, array $context = []): void
 	{
-		$this->add(self::LevelDebug, $message);
+		$this->add(self::LevelDebug, $message, $context);
 	}
 
 	/**
 	 * Logs with an arbitrary level.
 	 *
-	 * @param mixed $level
-	 * @param string $message
-	 * @param array $context
+	 * @param mixed             $level
+	 * @param string|Stringable $message
+	 * @param array             $context
 	 */
-	public function log($level, $message, array $context = array()): void
+	public function log($level, string|Stringable $message, array $context = []): void
 	{
-		$this->add($level, $message);
+		$this->add($level, $message, $context);
 	}
 }

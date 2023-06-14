@@ -35,7 +35,7 @@ class Logger extends Base implements LoggerInterface
 		$this->output = $output;
 	}
 
-	protected function add($level, $message): void
+	protected function add($level, $message, $context = []): void
 	{
 		if ($this->output->isQuiet())
 		{
@@ -58,6 +58,21 @@ class Logger extends Base implements LoggerInterface
 			'<comment>$1</comment>',
 		];
 		$message = preg_replace($patterns, $replacements, $message);
+
+		// build a replacement array with braces around the context keys
+		$replace = [];
+		foreach ($context as $key => $val)
+		{
+			// check that the value can be cast to string
+			if (!is_array($val) && (!is_object($val) || method_exists($val, '__toString')))
+			{
+				$replace['{' . $key . '}'] = $val;
+			}
+		}
+
+		// interpolate replacement values into the message and return
+		$message = strtr($message, $replace);
+
 		// Always show high level messages:
 		// emergency
 		// alert
