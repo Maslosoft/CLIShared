@@ -1,42 +1,43 @@
 {
-	"name": "maslosoft/cli-shared",
-	"description": "Shared CLI application components",
-	"type": "library",
-	"authors": [
-		{
-			"name": "Peter Maselkowski",
-			"email": "pmaselkowski@gmail.com"
-		}
-	],
-	"keywords": [
-		"php",
-		"cli",
-		"helpers",
-		"command-line"
-	],
-	"license": [
-		"AGPL-3.0-only",
-		"proprietary"
-	],
-	"autoload": {
-		"psr-4": {
-			"Maslosoft\\Cli\\Shared\\": "src"
-		}
-	},
-	"require": {
-		"php": ">=8.2",
-		"psr/log": "^3",
-		"symfony/finder": ">=2.7 <7.0",
-		"symfony/yaml": ">=2.7 <7.0"
-	},
-	"require-dev": {
-		"maslosoft/zamm": "*",
-		"codeception/codeception": "^5",
-		"codeception/module-asserts": "^3"
-	},
-	"homepage": "https://maslosoft.com/cli-shared/",
-	"support": {
-		"docs": "https://maslosoft.com/cli-shared/docs/",
-		"issues": "https://github.com/Maslosoft/CliShared/issues"
-	}
+    "name": "maslosoft/cli-shared",
+    "version": "2.0.4",
+    "description": "Shared CLI application components",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Peter Maselkowski",
+            "email": "pmaselkowski@gmail.com"
+        }
+    ],
+    "keywords": [
+        "php",
+        "cli",
+        "helpers",
+        "command-line"
+    ],
+    "license": [
+        "AGPL-3.0-only",
+        "proprietary"
+    ],
+    "autoload": {
+        "psr-4": {
+            "Maslosoft\\Cli\\Shared\\": "src"
+        }
+    },
+    "require": {
+        "php": ">=8.2",
+        "psr/log": "^3",
+        "symfony/finder": ">=2.7 <7.0",
+        "symfony/yaml": ">=2.7 <7.0"
+    },
+    "require-dev": {
+        "maslosoft/zamm": "*",
+        "codeception/codeception": "^5",
+        "codeception/module-asserts": "^3"
+    },
+    "homepage": "https://maslosoft.com/cli-shared/",
+    "support": {
+        "docs": "https://maslosoft.com/cli-shared/docs/",
+        "issues": "https://github.com/Maslosoft/CliShared/issues"
+    }
 }
