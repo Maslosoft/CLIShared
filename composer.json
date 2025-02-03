@@ -26,9 +26,9 @@
     },
     "require": {
         "php": ">=8.2",
-        "psr/log": "^3",
-        "symfony/finder": ">=2.7 <7.0",
-        "symfony/yaml": ">=2.7 <7.0"
+        "psr/log": "^3|^4",
+        "symfony/finder": ">=2.7",
+        "symfony/yaml": ">=2.7"
     },
     "require-dev": {
         "maslosoft/zamm": "*",
