@@ -1,6 +1,6 @@
 {
     "name": "maslosoft/cli-shared",
-    "version": "2.0.4",
+    "version": "2.0.5",
     "description": "Shared CLI application components",
     "type": "library",
     "authors": [
